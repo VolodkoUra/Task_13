@@ -1,30 +1,51 @@
-from func import my_sum,my_dif,my_mul,my_division
-from exceptions import MyZeroException, MyValueException, MyTypeException
+from func import my_sum, my_dif, my_mul, my_division
+from exceptions import MyValueException
+
 
 def ui_function():
     print("Вас приветствует программа колькулятор!!!")
     while True:
         try:
-            x = input("Введите число х: ")
-            if not x.isdigit():
-                raise MyValueException("Введено не число!")
+            x = input("Введите число x: ")
+            if len(x) > 1:
+                if not x[1:].isdigit():
+                    raise MyValueException("Введено не число!")
+                else:
+                    x = int(x)
+            else:
+                if not x.isdigit():
+                    raise MyValueException("Введено не число!")
+                else:
+                    x = int(x)
+
             y = input("Введите число y: ")
-            if not y.isdigit():
-                raise MyValueException("Введено не число!")
+            if len(y) > 1:
+                if not y[1:].isdigit():
+                    raise MyValueException("Введено не число!")
+                else:
+                    y = int(y)
+            else:
+                if not y.isdigit():
+                    raise MyValueException("Введено не число!")
+                else:
+                    y = int(y)
+
+            disp = input("Введите действие которое хотите выполнить:"
+                         "\n+ : сложение\n- : вычитание\n* : умножение\n"
+                         "/ : деление\n0 : выход из программы\n>>> ")
+            if disp == "+":
+                print(my_sum(x, y))
+            elif disp == "-":
+                print(my_dif(x, y))
+            elif disp == "*":
+                print(my_mul(x, y))
+            elif disp == "/":
+                print(my_division(x, y))
+            elif disp == "0":
+                print("Вы вышли из программы!")
+                break
+            else:
+                print("Указан неверный тип операции")
+
         except MyValueException as ex:
             print(ex)
-            disp =  input("Введите действие которое хотите выполнить:"
-                  "\n+ : сложение\n- : вычитание\n* : умножение\n/ : деление\n")
-            if disp == "+":
-                x = int(x)
-                y = int(y)
-                print(my_sum(x, y))
-
-
-
-
-
-
-
-ui_function()
-
