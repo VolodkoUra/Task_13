@@ -1,20 +1,25 @@
 from func import my_sum, my_dif, my_mul, my_division
 from exceptions import MyValueException
 
+"""Пользовательский интерфейс"""
+
 
 def ui_function():
     print("Вас приветствует программа колькулятор!!!")
     while True:
+        """Проверка на тип входных данных, так как isdigit 
+        принимет минус как строку, то сначала проверяем является ли
+        строка числом без первого символа"""
         try:
             x = input("Введите число x: ")
             if len(x) > 1:
                 if not x[1:].isdigit():
-                    raise MyValueException("Введено не число!")
+                    raise MyValueException("Введено не число!")  # Генерируется собственное исключение
                 else:
                     x = int(x)
             else:
                 if not x.isdigit():
-                    raise MyValueException("Введено не число!")
+                    raise MyValueException("Введено не число!")  # Генерируется собственное исключение
                 else:
                     x = int(x)
 
@@ -30,6 +35,7 @@ def ui_function():
                 else:
                     y = int(y)
 
+            # Меню калькулятора
             disp = input("Введите действие которое хотите выполнить:"
                          "\n+ : сложение\n- : вычитание\n* : умножение\n"
                          "/ : деление\n0 : выход из программы\n>>> ")
